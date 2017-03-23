@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 //Task component - represents a single todo item
 export default class Task extends Component {
 	render() {
-		render (
+		return (
 			<li>{this.props.task.text}</li>
 		);
 	}
@@ -11,5 +11,6 @@ export default class Task extends Component {
 
 Task.propTypes = {
 	// This component gets the task to display through a React prop
-	// We can use propTypes.object.isRequired,
+	// We can use propTypes.object.isRequired
+	task: PropTypes.object.isRequired,
 };
