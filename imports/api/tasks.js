@@ -23,7 +23,7 @@ Meteor.methods({
 
 		// Make sure the user is logged in before inserting a task
 		if  (! Meteor.userId()) {
-			throw new Metero.Error('not-authorized');
+			throw new Meteor.Error('not-authorized');
 		}
 
 		Tasks.insert({
@@ -35,6 +35,11 @@ Meteor.methods({
 	},
 	'tasks.remove'(taskId) {
 		check(taskId, String);
+
+		// Make sure only the task owner can delete a task
+		if  (task.owner !== Meteor.userId()) {
+			throw new Meteor.Error('not-authorized');
+		}
 
 		Tasks.remove(taskId);
 	},
